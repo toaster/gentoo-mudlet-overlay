@@ -12,6 +12,8 @@ SRC_URI=""
 EGIT_REPO_URI="git://mudlet.git.sourceforge.net/gitroot/mudlet/mudlet"
 EGIT_SOURCEDIR="${S}"
 
+INSTALL_PREFIX="/usr"
+
 LICENSE=""
 SLOT="0"
 KEYWORDS="~x86"
@@ -37,20 +39,22 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/lua.patch"
 	epatch "${FILESDIR}/mudlet-lua.patch"
+	epatch "${FILESDIR}/install_prefix.patch"
 }
 
 src_configure() {
-    eqmake4 "${S}/src/src.pro"
+	eqmake4 "${S}/src/src.pro" INSTALL_PREFIX=${INSTALL_PREFIX}
 }
 
 src_install() {
 	qt4-r2_src_install
 
+	domenu mudlet.desktop
+	doicon mudlet.svg mudlet.png
+
 	cd "${S}/src/mudlet-lua"
-
-	insinto "/usr/local/share/mudlet/lua"
-	doins $(ls -1 lua/*.lua)
-
-	insinto "/usr/local/share/mudlet/lua/geyser"
-	doins $(ls -1 lua/geyser/*.lua)
+	for dir in lua lua/geyser; do
+		insinto "/usr/share/mudlet/${dir}"
+		doins $(ls -1 ${dir}/*.lua)
+	done
 }
