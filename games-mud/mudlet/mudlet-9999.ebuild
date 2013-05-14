@@ -26,6 +26,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}
 	dev-lua/lrexlib[pcre]
+	dev-lua/luazip
 "
 
 src_unpack() {
