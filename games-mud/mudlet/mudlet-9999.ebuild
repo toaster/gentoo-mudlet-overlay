@@ -28,6 +28,7 @@ RDEPEND="${DEPEND}
 	dev-lua/lrexlib[pcre]
 	dev-lua/luazip
 	dev-lua/luafilesystem
+	dev-lua/luasql[sqlite3]
 "
 
 src_unpack() {

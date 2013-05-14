@@ -53,7 +53,7 @@ lua_install_module() {
 lua_install_cmodule() {
 	lua_version
 
-	insinto /usr/$(get_libdir)/lua/${LUAVER}
-	doins $@ || die "doins failed"
+	insinto /usr/$(get_libdir)/lua/${LUAVER}/${2}
+	doins ${1} || die "doins failed"
 }
 
