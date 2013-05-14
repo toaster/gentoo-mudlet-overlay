@@ -17,14 +17,16 @@ SLOT="0"
 KEYWORDS="~x86"
 IUSE=""
 
-# FIXME qt4 und andere
+# FIXME missing qt4 dependencies
 DEPEND="
 	dev-lang/lua
 	dev-libs/quazip
 	dev-libs/yajl
 	dev-libs/zziplib
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	dev-lua/lrexlib[pcre]
+"
 
 src_unpack() {
 	git-2_src_unpack
