@@ -19,12 +19,15 @@ SLOT="0"
 KEYWORDS="~x86"
 IUSE=""
 
-# FIXME missing qt4 dependencies
 DEPEND="
 	dev-lang/lua
 	dev-libs/quazip
 	dev-libs/yajl
 	dev-libs/zziplib
+	dev-qt/qtcore
+	dev-qt/qtdbus
+	dev-qt/qtgui
+	dev-qt/qtopengl
 "
 RDEPEND="${DEPEND}
 	dev-lua/lrexlib[pcre]
